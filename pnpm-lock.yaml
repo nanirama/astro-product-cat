@@ -57,12 +57,12 @@ importers:
         specifier: ^0.1.5
         version: 0.1.5
       tailwindcss:
-        specifier: ^4.1.17
-        version: 4.1.18
+        specifier: ^4.2.1
+        version: 4.2.1
     devDependencies:
       '@tailwindcss/forms':
         specifier: ^0.5.11
-        version: 0.5.11(tailwindcss@4.1.18)
+        version: 0.5.11(tailwindcss@4.2.1)
       astro-vtbot:
         specifier: ^2.1.11
         version: 2.1.11
@@ -2342,6 +2342,9 @@ packages:
   tailwindcss@4.1.18:
     resolution: {integrity: sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw==}
 
+  tailwindcss@4.2.1:
+    resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
+
   tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
     engines: {node: '>=6'}
@@ -3397,10 +3400,10 @@ snapshots:
 
   '@swc/helpers@0.2.14': {}
 
-  '@tailwindcss/forms@0.5.11(tailwindcss@4.1.18)':
+  '@tailwindcss/forms@0.5.11(tailwindcss@4.2.1)':
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 4.1.18
+      tailwindcss: 4.2.1
 
   '@tailwindcss/node@4.1.18':
     dependencies:
@@ -5524,6 +5527,8 @@ snapshots:
       sax: 1.4.4
 
   tailwindcss@4.1.18: {}
+
+  tailwindcss@4.2.1: {}
 
   tapable@2.3.0: {}
 
