@@ -16,24 +16,31 @@ function formatCategoryName(category: string): string {
 }
 ---
 
-<div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow dark:bg-neutral-900 w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] flex flex-col">
-  <div class="aspect-square overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex-shrink-0">
-    <img
-      src={categoryImage}
-      alt={formatCategoryName(category)}
-      class="w-full h-full object-cover"
-      loading="lazy"
-    />
-  </div>
-  <div class="p-4 flex-1 flex flex-col">
-    <h3 class="text-lg font-semibold text-neutral-800 mb-4 dark:text-neutral-200">
-      {formatCategoryName(category)}
-    </h3>
-    <a
-      href={categoryUrl}
-      class="mt-auto px-4 py-2 text-sm font-medium text-center rounded border border-neutral-800 text-neutral-800 hover:bg-neutral-100 dark:border-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 transition-colors"
+<div
+  class="flex w-full flex-col overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] dark:bg-neutral-900"
+>
+  <a href={categoryUrl}>
+    <div
+      class="aspect-square flex-shrink-0 overflow-hidden bg-neutral-100 dark:bg-neutral-800"
     >
-      ნახეთ მეტი
-    </a>
-  </div>
+      <img
+        src={categoryImage}
+        alt={formatCategoryName(category)}
+        class="h-full w-full object-cover"
+        loading="lazy"
+      />
+    </div>
+    <div class="flex flex-1 flex-col p-4">
+      <h3
+        class="mb-4 text-lg font-semibold text-neutral-800 dark:text-neutral-200"
+      >
+        {formatCategoryName(category)}
+      </h3>
+      <div
+        class="mt-auto rounded border border-neutral-800 px-4 py-2 text-center text-sm font-medium text-neutral-800 transition-colors hover:bg-neutral-100 dark:border-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800"
+      >
+        ნახეთ მეტი
+      </div>
+    </div>
+  </a>
 </div>
