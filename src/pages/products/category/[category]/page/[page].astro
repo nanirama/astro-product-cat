@@ -1,0 +1,123 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import ProductCard from "@components/ui/cards/ProductCard.astro";
+import Pagination from "@components/ui/Pagination.astro";
+import CategoryFilter from "@components/ui/CategoryFilter.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { SITE } from "@data/constants";
+
+export async function getStaticPaths() {
+  const allProducts: CollectionEntry<"products">[] = await getCollection("products");
+  
+  // Get all unique categories
+  const allCategories = Array.from(
+    new Set(
+      allProducts.flatMap((product) => product.data.category || [])
+    )
+  );
+
+  const paths: Array<{ params: { category: string; page: string } }> = [];
+
+  // For each category, generate paths for all pages (skip page 1, handled by [category].astro)
+  for (const category of allCategories) {
+    const filteredProducts = allProducts.filter((product) => {
+      const categories = product.data.category;
+      if (!categories || !Array.isArray(categories)) {
+        return false;
+      }
+      return categories.includes(category);
+    });
+
+    const productsPerPage = 8;
+    const totalPages = Math.max(1, Math.ceil(filteredProducts.length / productsPerPage));
+    
+    // Generate paths for pages 2 and onwards
+    for (let page = 2; page <= totalPages; page++) {
+      paths.push({
+        params: { category, page: page.toString() },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { category, page } = Astro.params;
+const selectedCategory = category || "";
+const currentPage = parseInt(page || "1", 10);
+
+// Get all products
+const allProducts: CollectionEntry<"products">[] = await getCollection("products");
+
+// Extract all unique categories from products
+const allCategories = Array.from(
+  new Set(
+    allProducts.flatMap((product) => product.data.category || [])
+  )
+).sort();
+
+// Filter products by category
+const filteredProducts = allProducts.filter((product) => {
+  const categories = product.data.category;
+  if (!categories || !Array.isArray(categories)) {
+    return false;
+  }
+  return categories.includes(selectedCategory);
+});
+
+// Pagination: 3 products per page
+const productsPerPage = 8;
+const totalPages = Math.max(1, Math.ceil(filteredProducts.length / productsPerPage));
+const validPage = Math.max(1, Math.min(currentPage, totalPages));
+
+const startIndex = (validPage - 1) * productsPerPage;
+const endIndex = startIndex + productsPerPage;
+const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+
+// Format category name for display (used in page title)
+function formatCategoryName(category: string): string {
+  return category
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+const pageTitle = `${formatCategoryName(selectedCategory)} - Page ${validPage} | Products | ${SITE.title}`;
+const metaDescription = `Browse ${formatCategoryName(selectedCategory)} products`;
+---
+
+<MainLayout title={pageTitle} customDescription={metaDescription}>
+  <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+    <!-- Page Title -->
+    <h1 class="text-4xl font-bold tracking-tight text-balance text-center text-neutral-800 mb-8 md:text-5xl dark:text-neutral-200">
+      Our Catalogs
+    </h1>
+
+    <!-- Category Filter -->
+    <CategoryFilter categories={allCategories} selectedCategory={selectedCategory} baseUrl="/products" />
+
+    <!-- Products Grid -->
+    {paginatedProducts.length > 0 ? (
+      <div class="flex flex-wrap justify-center gap-6 mb-12">
+        {paginatedProducts.map((product) => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 mb-12">
+        <p class="text-lg text-neutral-600 dark:text-neutral-400">
+          No products found in this category.
+        </p>
+      </div>
+    )}
+
+    <!-- Pagination -->
+    <Pagination
+      currentPage={validPage}
+      totalPages={totalPages}
+      baseUrl={`/products/category/${selectedCategory}`}
+      pageUrlPattern={`/products/category/${selectedCategory}/page/{page}`}
+    />
+  </div>
+</MainLayout>

@@ -1,0 +1,68 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string; // Base URL for page 1 (e.g., "/products" or "/products/category/electronics")
+  pageUrlPattern?: string; // Optional pattern for page URLs (e.g., "/products/page/{page}" or "/products/category/electronics/page/{page}")
+}
+
+const { currentPage, totalPages, baseUrl, pageUrlPattern } = Astro.props;
+
+// Generate page URL
+function getPageUrl(pageNum: number): string {
+  if (pageNum === 1) {
+    return baseUrl;
+  }
+  if (pageUrlPattern) {
+    return pageUrlPattern.replace("{page}", pageNum.toString());
+  }
+  // Default pattern: append /page/{page} to baseUrl
+  return `${baseUrl}/page/${pageNum}`;
+}
+---
+
+{totalPages > 1 && (
+  <div class="flex items-center justify-center gap-2">
+    <!-- Previous Button -->
+    {currentPage > 1 ? (
+      <a
+        href={getPageUrl(currentPage - 1)}
+        class="px-4 py-2 text-sm font-medium rounded border border-neutral-800 text-neutral-800 hover:bg-neutral-100 dark:border-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 transition-colors"
+      >
+        PREVIOUS
+      </a>
+    ) : (
+      <span class="px-4 py-2 text-sm font-medium rounded border border-neutral-300 text-neutral-400 cursor-not-allowed dark:border-neutral-700 dark:text-neutral-600">
+        PREVIOUS
+      </span>
+    )}
+
+    <!-- Page Numbers -->
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+      <a
+        href={getPageUrl(pageNum)}
+        class={`px-4 py-2 text-sm font-medium rounded border transition-colors ${
+          pageNum === currentPage
+            ? "bg-neutral-800 text-white border-neutral-800 dark:bg-neutral-200 dark:text-neutral-800 dark:border-neutral-200"
+            : "border-neutral-800 text-neutral-800 hover:bg-neutral-100 dark:border-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        }`}
+      >
+        {pageNum}
+      </a>
+    ))}
+
+    <!-- Next Button -->
+    {currentPage < totalPages ? (
+      <a
+        href={getPageUrl(currentPage + 1)}
+        class="px-4 py-2 text-sm font-medium rounded border border-neutral-800 text-neutral-800 hover:bg-neutral-100 dark:border-neutral-200 dark:text-neutral-200 dark:hover:bg-neutral-800 transition-colors"
+      >
+        NEXT
+      </a>
+    ) : (
+      <span class="px-4 py-2 text-sm font-medium rounded border border-neutral-300 text-neutral-400 cursor-not-allowed dark:border-neutral-700 dark:text-neutral-600">
+        NEXT
+      </span>
+    )}
+  </div>
+)}

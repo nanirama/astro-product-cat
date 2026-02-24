@@ -1,0 +1,335 @@
+---
+interface Props {
+  mainImage: string;
+  allImages: string[];
+  currentImageIndex: number;
+  productTitle: string;
+  selectedColor: string | null;
+}
+
+const { mainImage, allImages, currentImageIndex, productTitle, selectedColor } = Astro.props;
+
+// Preload next likely image for better performance
+const nextImageIndex = (currentImageIndex + 1) % allImages.length;
+const nextImage = allImages[nextImageIndex];
+---
+
+<!-- Preload critical main image for LCP optimization -->
+<link rel="preload" as="image" href={mainImage} fetchpriority="high" />
+
+<!-- Preload next likely image -->
+{allImages.length > 1 && (
+  <link rel="preload" as="image" href={nextImage} />
+)}
+
+<section class="product-image-gallery" aria-label="Product image gallery">
+  <!-- Main Product Image -->
+  <figure class="mb-3 sm:mb-4 aspect-square overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800 relative" itemscope itemtype="https://schema.org/ImageObject">
+    <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+      <div class="w-12 h-12 border-4 border-neutral-300 border-t-neutral-600 rounded-full animate-spin opacity-0 transition-opacity duration-200" id="image-loading-spinner"></div>
+    </div>
+    <img
+      src={mainImage}
+      alt={`${productTitle} - Main product view`}
+      class="h-full w-full object-cover transition-opacity duration-300"
+      id="main-product-image"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      width="800"
+      height="800"
+      itemprop="contentUrl"
+      aria-label={`Main product image: ${productTitle}`}
+    />
+    <meta itemprop="name" content={productTitle} />
+  </figure>
+
+  <!-- Thumbnail Images -->
+  {allImages.length > 1 && (
+    <nav class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:gap-4" role="tablist" aria-label={`Product image thumbnails. ${allImages.length} images available.`}>
+      {allImages.map((image, index) => {
+        const isActive = currentImageIndex === index;
+        return (
+          <button
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            aria-controls="main-product-image"
+            aria-label={`View ${productTitle} image ${index + 1} of ${allImages.length}. ${isActive ? 'Currently selected.' : 'Click to view this image.'}`}
+            tabindex={isActive ? 0 : -1}
+            class={`aspect-square overflow-hidden rounded-lg border-2 transition-all duration-200 min-h-[60px] sm:min-h-[80px] touch-manipulation focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-2 dark:focus:ring-neutral-200 active:scale-95 ${
+              isActive
+                ? "border-neutral-800 dark:border-neutral-200 ring-2 ring-offset-2 ring-neutral-800 dark:ring-neutral-200"
+                : "border-transparent hover:border-neutral-400 dark:hover:border-neutral-600"
+            }`}
+            data-image-index={index}
+            data-image-src={image}
+            data-image-alt={`${productTitle} view ${index + 1}`}
+          >
+            <img
+              src={image}
+              alt=""
+              class="h-full w-full object-cover pointer-events-none"
+              loading="lazy"
+              decoding="async"
+              width="200"
+              height="200"
+              aria-hidden="true"
+            />
+          </button>
+        );
+      })}
+    </nav>
+  )}
+  
+  <!-- Screen reader live region for image changes -->
+  <div class="sr-only" aria-live="polite" aria-atomic="true" id="image-gallery-announcement"></div>
+</section>
+
+<script is:inline>
+  // Optimized image gallery with Core Web Vitals, accessibility, and performance in mind
+  (function() {
+    'use strict';
+    
+    // Performance: Use requestIdleCallback if available, fallback to immediate execution
+    function scheduleInit(callback) {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(callback, { timeout: 2000 });
+      } else {
+        setTimeout(callback, 1);
+      }
+    }
+    
+    function initImageGallery() {
+      const mainImage = document.getElementById('main-product-image');
+      const thumbnailButtons = document.querySelectorAll('[data-image-index]');
+      const announcement = document.getElementById('image-gallery-announcement');
+      const spinner = document.getElementById('image-loading-spinner');
+      
+      if (!mainImage || thumbnailButtons.length === 0) return;
+      
+      // Handle image load errors gracefully
+      mainImage.addEventListener('error', function() {
+        this.style.opacity = '1';
+        if (spinner) {
+          spinner.classList.add('opacity-0');
+          spinner.classList.remove('opacity-100');
+        }
+        if (announcement) {
+          announcement.textContent = 'Image failed to load';
+        }
+      }, { once: true });
+      
+      // Use event delegation for better performance
+      const container = thumbnailButtons[0] && thumbnailButtons[0].closest('[role="tablist"]');
+      if (!container) return;
+      
+      // Preload images for better UX
+      function preloadImage(src) {
+        if (!src) return;
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+      }
+      
+      // Update main image with loading state and accessibility
+      function updateMainImage(imageSrc, imageAlt, imageIndex, totalImages) {
+        if (!imageSrc || !mainImage) return;
+        
+        // Show loading spinner
+        if (spinner) {
+          spinner.classList.remove('opacity-0');
+          spinner.classList.add('opacity-100');
+        }
+        
+        // Fade out current image
+        mainImage.style.opacity = '0';
+        
+        // Create new image to preload
+        const newImage = new Image();
+        newImage.src = imageSrc;
+        newImage.alt = imageAlt;
+        
+        newImage.onload = function() {
+          // Update main image
+          mainImage.src = imageSrc;
+          mainImage.alt = imageAlt;
+          
+          // Fade in new image
+          requestAnimationFrame(function() {
+            mainImage.style.opacity = '1';
+            if (spinner) {
+              spinner.classList.add('opacity-0');
+              spinner.classList.remove('opacity-100');
+            }
+          });
+          
+          // Announce to screen readers
+          if (announcement) {
+            announcement.textContent = 'Image ' + (imageIndex + 1) + ' of ' + totalImages + ' displayed';
+          }
+          
+          // Preload next image
+          const nextIndex = (imageIndex + 1) % totalImages;
+          const nextButton = Array.from(thumbnailButtons)[nextIndex];
+          if (nextButton) {
+            const nextSrc = nextButton.getAttribute('data-image-src');
+            if (nextSrc) preloadImage(nextSrc);
+          }
+        };
+        
+        newImage.onerror = function() {
+          if (spinner) {
+            spinner.classList.add('opacity-0');
+            spinner.classList.remove('opacity-100');
+          }
+          mainImage.style.opacity = '1';
+          if (announcement) {
+            announcement.textContent = 'Failed to load image';
+          }
+        };
+      }
+      
+      // Handle clicks with passive listener optimization
+      container.addEventListener('click', function(e) {
+        var target = e.target;
+        var button = null;
+        
+        // Find the closest button element
+        while (target && target !== container) {
+          if (target.hasAttribute && target.hasAttribute('data-image-index')) {
+            button = target;
+            break;
+          }
+          target = target.parentElement;
+        }
+        
+        if (!button) return;
+        
+        const imageSrc = button.getAttribute('data-image-src');
+        const imageAlt = button.getAttribute('data-image-alt') || mainImage.alt;
+        const imageIndex = parseInt(button.getAttribute('data-image-index') || '0', 10);
+        
+        if (!imageSrc) return;
+        
+        // Update main image
+        updateMainImage(imageSrc, imageAlt, imageIndex, thumbnailButtons.length);
+        
+        // Update active thumbnail border and ARIA attributes
+        thumbnailButtons.forEach(function(btn) {
+          const isActive = btn === button;
+          btn.setAttribute('aria-selected', String(isActive));
+          btn.setAttribute('tabindex', isActive ? '0' : '-1');
+          btn.classList.remove('border-neutral-800', 'dark:border-neutral-200', 'ring-2', 'ring-offset-2', 'ring-neutral-800', 'dark:ring-neutral-200');
+          btn.classList.add('border-transparent');
+        });
+        
+        button.classList.remove('border-transparent');
+        button.classList.add('border-neutral-800', 'dark:border-neutral-200', 'ring-2', 'ring-offset-2', 'ring-neutral-800', 'dark:ring-neutral-200');
+      }, { passive: true });
+      
+      // Keyboard navigation support with proper ARIA
+      container.addEventListener('keydown', function(e) {
+        const buttons = Array.from(thumbnailButtons);
+        const currentIndex = buttons.findIndex(function(btn) {
+          return btn.getAttribute('aria-selected') === 'true';
+        });
+        
+        if (currentIndex === -1) return;
+        
+        let nextIndex = currentIndex;
+        let handled = false;
+        
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          nextIndex = (currentIndex + 1) % buttons.length;
+          handled = true;
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+          handled = true;
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          nextIndex = 0;
+          handled = true;
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          nextIndex = buttons.length - 1;
+          handled = true;
+        }
+        
+        if (handled && nextIndex !== currentIndex) {
+          const nextButton = buttons[nextIndex];
+          const imageSrc = nextButton.getAttribute('data-image-src');
+          const imageAlt = nextButton.getAttribute('data-image-alt') || mainImage.alt;
+          
+          if (imageSrc) {
+            updateMainImage(imageSrc, imageAlt, nextIndex, buttons.length);
+            
+            // Update ARIA attributes
+            buttons.forEach(function(btn, idx) {
+              const isActive = idx === nextIndex;
+              btn.setAttribute('aria-selected', String(isActive));
+              btn.setAttribute('tabindex', isActive ? '0' : '-1');
+              btn.classList.remove('border-neutral-800', 'dark:border-neutral-200', 'ring-2', 'ring-offset-2', 'ring-neutral-800', 'dark:ring-neutral-200');
+              btn.classList.add('border-transparent');
+            });
+            
+            nextButton.classList.remove('border-transparent');
+            nextButton.classList.add('border-neutral-800', 'dark:border-neutral-200', 'ring-2', 'ring-offset-2', 'ring-neutral-800', 'dark:ring-neutral-200');
+            nextButton.focus();
+          }
+        }
+      });
+      
+      // Preload adjacent images on hover for better UX
+      thumbnailButtons.forEach(function(button) {
+        button.addEventListener('mouseenter', function() {
+          const imageSrc = button.getAttribute('data-image-src');
+          if (imageSrc) preloadImage(imageSrc);
+        }, { passive: true });
+      });
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        scheduleInit(initImageGallery);
+      });
+    } else {
+      scheduleInit(initImageGallery);
+    }
+  })();
+</script>
+
+<style>
+  /* Optimize touch interactions for mobile */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  /* Screen reader only class */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Smooth image transitions */
+  #main-product-image {
+    will-change: opacity;
+  }
+  
+  /* Reduce layout shift */
+  .product-image-gallery figure {
+    contain: layout style paint;
+  }
+</style>

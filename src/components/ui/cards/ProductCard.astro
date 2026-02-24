@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  product: CollectionEntry<"products">;
+}
+
+const { product } = Astro.props;
+
+// Format price for display
+function formatPrice(price: number | null, currency: string | null): string {
+  if (price === null) return "Price on request";
+  if (currency === null) return `$${price.toLocaleString()}`;
+  return `${currency} ${price.toLocaleString()}`;
+}
+---
+
+<div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow dark:bg-neutral-900 w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] flex flex-col">
+  <a href={`/products/${product.data.slug}`} class="block flex-1 flex flex-col">
+    <div class="aspect-square overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex-shrink-0">
+      <img
+        src={product.data.main_image}
+        alt={product.data.title}
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+    <div class="p-4 flex-1 flex flex-col">
+      <h3 class="text-lg font-semibold text-neutral-800 mb-2 dark:text-neutral-200">
+        {product.data.title}
+      </h3>
+      <p class="text-xl font-bold text-neutral-900 dark:text-neutral-100 mt-auto">
+        {formatPrice(product.data.price, product.data.currency)}
+      </p>
+    </div>
+  </a>
+</div>
