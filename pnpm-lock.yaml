@@ -75,6 +75,9 @@ importers:
       '@tailwindcss/forms':
         specifier: ^0.5.11
         version: 0.5.11(tailwindcss@4.1.18)
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
       astro-vtbot:
         specifier: ^2.1.11
         version: 2.1.11
