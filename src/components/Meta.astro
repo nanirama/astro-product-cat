@@ -50,7 +50,9 @@ const canonical = new URL(
 //   height: 600,
 // });
 // const socialImage = Astro.url.origin + socialImageRes.src; // Get the full URL of the image (https://stackoverflow.com/a/9858694)
-const defaultOgImage = new URL("/og-default.png", Astro.site).href;
+const base = Astro.site ?? Astro.url.origin;
+const defaultOgImage = new URL("/og-default.png", base).href;
+console.log('defaultOgImage',defaultOgImage)
 const resolvedImage = ogImage ?? defaultOgImage;
 
 // Detect image type from file extension if not provided

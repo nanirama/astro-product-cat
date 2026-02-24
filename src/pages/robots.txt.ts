@@ -17,6 +17,18 @@ Disallow:
 Allow: /
 Crawl-delay: 2
 
+User-agent: facebookexternalhit
+Disallow:
+Allow: /
+
+User-agent: Twitterbot
+Disallow:
+Allow: /
+
+User-agent: LinkedInBot
+Disallow:
+Allow: /
+
 User-agent: *
 Disallow: /
 
