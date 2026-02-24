@@ -1,0 +1,15 @@
+# Allow all crawlers including Facebook (facebookexternalhit) and Twitter (Twitterbot)
+User-agent: *
+Allow: /
+
+# Explicitly allow social media bots
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+Sitemap: https://astro-product-cat.pages.dev/sitemap-index.xml
