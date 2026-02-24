@@ -15,7 +15,7 @@ const strings = Astro.currentLocale === "fr" ? frStrings : enStrings;
 const sectionThreeTitle: string = Astro.currentLocale === "fr" ? "Rester à jour" : "Stay up to date";
 const sectionThreeContent: string = Astro.currentLocale === "fr" ? "Restez informé des derniers outils et des offres exclusives." :
   "Stay updated with the latest tools and exclusive deals.";
-const crafted: string = Astro.currentLocale === "fr" ? "Fabriqué par" : "Crafted by";
+const crafted: string = Astro.currentLocale === "fr" ? "Fabriqué par" : "By";
 ---
 
 <footer class="w-full bg-neutral-300 dark:bg-neutral-900">
@@ -55,7 +55,7 @@ const crafted: string = Astro.currentLocale === "fr" ? "Fabriqué par" : "Crafte
         ))
       }
 
-      <div class="col-span-2">
+      <!--div class="col-span-2">
         <h3 class="font-bold text-neutral-800 dark:text-neutral-200">
           {sectionThreeTitle}
         </h3>
@@ -66,7 +66,7 @@ const crafted: string = Astro.currentLocale === "fr" ? "Fabriqué par" : "Crafte
             {sectionThreeContent}
           </p>
         </form>
-      </div>
+      </div -->
     </div>
 
     <div
@@ -77,9 +77,9 @@ const crafted: string = Astro.currentLocale === "fr" ? "Fabriqué par" : "Crafte
           © <span id="current-year"></span> {SITE.title}. {crafted}
           <a
             class="rounded-lg font-medium underline underline-offset-2 outline-hidden ring-zinc-500 transition duration-300 hover:text-neutral-700 hover:decoration-dashed focus:outline-hidden focus-visible:ring-3 dark:ring-zinc-200 dark:hover:text-neutral-300"
-            href="https://www.gulamoff.dev/"
+            href="https://www.locron.com/"
             target="_blank"
-            rel="noopener noreferrer">gulamoff</a
+            rel="noopener noreferrer">Locron.com</a
           >.
         </p>
       </div>
@@ -90,21 +90,7 @@ const crafted: string = Astro.currentLocale === "fr" ? "Fabriqué par" : "Crafte
           ><Icon name="facebookFooter" />
         </FooterSocialLink>
 
-        <FooterSocialLink url={strings.socialLinks.x}
-          ><Icon name="xFooter" /></FooterSocialLink
-        >
 
-        <FooterSocialLink url={strings.socialLinks.github}
-          ><Icon name="githubFooter" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={strings.socialLinks.google}
-          ><Icon name="googleFooter" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={strings.socialLinks.slack}
-          ><Icon name="slackFooter" />
-        </FooterSocialLink>
       </div>
     </div>
 

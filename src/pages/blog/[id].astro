@@ -45,8 +45,8 @@ const relatedPosts: CollectionEntry<"blog">[] = blogPosts.filter(
 const pageTitle: string = `${post.data.title} | ${SITE.title}`;
 // For the meta description, use the first paragraph of content if available
 const metaDescription =
-  post.data.contents[0] || `Read ${post.data.title} on ScrewFast's blog`;
-const ogTitle = `${post.data.title} | Blog | ${SITE.title}`;
+  post.data.contents[0] || ` ${post.data.title} `;
+const ogTitle = `${post.data.title} | სიახლეები | ${SITE.title}`;
 ---
 
 <MainLayout
@@ -68,12 +68,12 @@ const ogTitle = `${post.data.title} | Blog | ${SITE.title}`;
       name: SITE.title,
       logo: {
         "@type": "ImageObject",
-        url: "https://screwfast.uk/favicon.ico",
+        url: "https://arenda.ge/favicon.ico",
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://screwfast.uk/blog/${post.id.replace(/^en\//, "")}`,
+      "@id": `https://arenda.ge/blog/${post.id.replace(/^en\//, "")}`,
     },
   }}
 >

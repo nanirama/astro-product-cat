@@ -25,15 +25,15 @@ const startIndex = (currentPage - 1) * productsPerPage;
 const endIndex = startIndex + productsPerPage;
 const paginatedProducts = allProducts.slice(startIndex, endIndex);
 
-const pageTitle = `Products | ${SITE.title}`;
-const metaDescription = "Browse our catalog of products";
+const pageTitle = `ტექნიკა და ინსტრუმენტები | ${SITE.title}`;
+const metaDescription = "მოიძიეთ თქვენთვის საჭირო ტექნიკა და ინსტრუმენტი";
 ---
 
 <MainLayout title={pageTitle} customDescription={metaDescription}>
   <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
     <!-- Page Title -->
     <h1 class="text-4xl font-bold tracking-tight text-balance text-center text-neutral-800 mb-8 md:text-5xl dark:text-neutral-200">
-      Our Catalogs
+      საიმედო ტექნიკა თქვენი პროექტისთვის
     </h1>
 
     <!-- Category Filter -->

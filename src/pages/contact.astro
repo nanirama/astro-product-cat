@@ -4,10 +4,10 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import ContactSection from "@components/sections/misc/ContactSection.astro";
 import { SITE } from "@data/constants";
 
-const pageTitle: string = `Contact | ${SITE.title}`;
+const pageTitle: string = `საკონტაქტო ინფო | ${SITE.title}`;
 const metaDescription =
-  "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.";
-const ogTitle = "Contact Us | ScrewFast";
+  "გაქვთ შეკითხვა ჩვენს ტექნიკა და ინსტრუმენტებზე? დაგვიკავშირდით.";
+const ogTitle = "Contact Us | Arenda.ge";
 ---
 
 <MainLayout
@@ -17,19 +17,19 @@ const ogTitle = "Contact Us | ScrewFast";
   structuredData={{
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://screwfast.uk/contact",
-    url: "https://screwfast.uk/contact",
-    name: "Contact Us | ScrewFast",
+    "@id": "https://arenda.ge/contact",
+    url: "https://arenda.ge/contact",
+    name: "დაგვიკავშირდით | Arenda.ge",
     description:
       "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.",
     isPartOf: {
       "@type": "WebSite",
-      url: "https://screwfast.uk",
-      name: "ScrewFast",
+      url: "https://arenda.ge",
+      name: "Arenda.ge",
       description:
-        "ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.",
+        "Arenda.ge გთავაზობთ სამშენებლო ტექნიკასა და ინსტრუმენტებს იჯარით",
     },
-    inLanguage: "en-US",
+    inLanguage: "ka-GE",
   }}
 >
   <ContactSection />

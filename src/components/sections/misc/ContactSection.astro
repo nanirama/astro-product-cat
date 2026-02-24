@@ -9,11 +9,11 @@ import TextAreaInput from "@components/ui/forms/input/TextAreaInput.astro";
 import Icon from "@components/ui/icons/Icon.astro";
 
 // Define the variables that will be used in this component
-const title: string = "Contact us";
+const title: string = "დაგვიკავშირდით";
 const subTitle: string =
-  "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.";
-const formTitle: string = "Fill in the form below";
-const formSubTitle: string = "We'll get back to you in 1-2 business days.";
+  "მიიღეთ უფასო კონსულტაცია თქვენი პროექტისთვის საჭირო საშუალებებზე";
+const formTitle: string = "Arenda.ge - საიმედო ტექნიკა და ინსტრუმენტები";
+const formSubTitle: string = "#";
 ---
 
 <!-- Contact Us -->
@@ -39,7 +39,7 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
         </h2>
         <!-- Form for user input with various input fields.-->
         <!-- Each field utilizes a different input component for the specific type of input (text, email, phone, and textarea)-->
-        <form>
+        <!--form>
           <div class="grid gap-4">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <TextInput
@@ -71,45 +71,46 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
               {formSubTitle}
             </p>
           </div>
-        </form>
+        </form -->
       </div>
 
       <!--ContactIconBlocks are used to display different methods of contacting, including visiting office, email, browsing knowledgebase, and FAQ.-->
       <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
         <ContactIconBlock
-          heading="Knowledgebase"
-          content="Browse through all of our knowledgebase articles."
+          heading="Arenda.ge"
+          content="ცოდნის ბაზა"
           isLinkVisible={true}
-          linkTitle="Visit guides & tutorials"
-          linkURL="#"
+          linkTitle="ტექნიკისა და ინსტრუმენტების გამოყენების ინსტრუქციები"
+          linkURL="https://arenda.ge/tools/tool-guides/"
           isArrowVisible={true}
           ><Icon name="question" />
         </ContactIconBlock>
 
         <ContactIconBlock
-          heading="FAQ"
-          content="Explore our FAQ for quick, clear answers to common queries."
-          isLinkVisible={true}
-          linkTitle="Visit FAQ"
-          linkURL="#"
-          isArrowVisible={true}
+          heading="ტელეფონი"
+          content="+995551553203"
+          isLinkVisible={false}
+          linkTitle=""
+          linkURL=""
+          isArrowVisible={false}
           ><Icon name="chatBubble" />
         </ContactIconBlock>
 
         <ContactIconBlock
-          heading="Visit our office"
-          content="UK ScrewFast"
-          isAddressVisible={true}
-          addressContent="72 Union Terrace, E10 4PE London"
+          heading="ოფისი"
+          content="ცოტნე დადიანის ქუჩა 5, სოფ. ჭითაწყარი, ზუგდიდი"
+          isLinkVisible={true}
+          linkTitle="https://maps.app.goo.gl/s3S2G9hbAKa8hAdn6"
+          linkURL="https://maps.app.goo.gl/s3S2G9hbAKa8hAdn6"
           ><Icon name="mapPin" />
         </ContactIconBlock>
 
         <ContactIconBlock
-          heading="Contact us by email"
-          content="Prefer the written word? Drop us an email at"
-          isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
-          linkURL="#"
+          heading="Email"
+          content="contact@arenda.ge"
+          isLinkVisible={false}
+          linkTitle="contact@arenda.ge"
+          linkURL="contact@arenda.ge"
           ><Icon name="envelopeOpen" />
         </ContactIconBlock>
       </div>

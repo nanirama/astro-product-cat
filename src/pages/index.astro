@@ -29,68 +29,59 @@ const avatarSrcs: Array<string> = [
 ---
 
 <MainLayout>
-  <AnnouncementBanner
+  <!--AnnouncementBanner
     btnId="dismiss-button"
     btnTitle="Explore ScrewFast on GitHub"
     url="https://github.com/mearashadowfax/ScrewFast"
-  />
+  /-->
 
   <HeroSection
-    title=`Equip Your Projects with <span
-        class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>`
-    subTitle="Top-quality hardware tools and expert construction services for every project need."
-    primaryBtn="Start Exploring"
+    title=` <span
+        class="text-yellow-500 dark:text-yellow-400">ვაშენოთ ერთად</span>`
+    subTitle="სამშენებლო ტექნიკისა და ინსტრუმენტების გაქირავება"
+    primaryBtn="ტექნიკა და ინსტრუმენტები"
     primaryBtnURL="/products"
-    secondaryBtn="Contact Sales Team"
+    secondaryBtn="დაგვიკავშირდით"
     secondaryBtnURL="/contact"
     withReview={true}
     avatars={avatarSrcs}
     rating=`<span class="font-bold">4.8</span> / 5`
     starCount={4}
-    reviews=`From Over <span class="font-bold">12.8k</span> Reviews`
     src={heroImage}
-    alt="Stack of ScrewFast product boxes containing assorted hardware tools"
+    alt="Stack of product boxes containing assorted hardware tools"
   />
 
-  <ClientsSection
+   <!--ClientsSection
     title="Trusted by Industry Leaders"
     subTitle="Experience the reliability chosen by industry giants."
     partners={partnersData}
-  />
+   /-->
 
-  <FeaturesGeneral
+   <!--FeaturesGeneral
     title="Meeting Industry Demands"
-    subTitle="At ScrewFast, we tackle the unique challenges encountered in the hardware and construction sectors. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals."
-    src={featureImage}
-    alt="ScrewFast products in floating boxes"
-    features={features}
-  />
+     subTitle="At ScrewFast, we tackle the unique challenges encountered in the hardware and construction sectors. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals."
+     src={featureImage}
+      alt="ScrewFast products in floating boxes"
+      features={features}
+    /-->
 
   <FeaturesNavs
-    title=`Customize <span class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>'s offerings to perfectly suit your hardware and construction needs.`
+    title=`გთავაზობთ<span class="text-yellow-500 dark:text-yellow-400"> სამშენებლო </span> ტექნიკას და ინსტრუმენტებს იჯარით`
     tabs={[
       {
-        heading: "Cutting-Edge Tools",
+        heading: "თანამედროვე ტექნიკა",
         content:
-          "Empower your projects with ScrewFast's cutting-edge tools. Experience enhanced efficiency in construction management with our sophisticated automated solutions.",
+          "ჩვენი ექსკავატორებით, დამტვირთველებით, ამწეკრანებით და სატვირთო მანქანებით დაგეხმარებათ მშენებლობის ეფექტურად წარმართვაში.",
         svg: "tools",
         src: tools,
         alt: "Yellow and black heavy equipment on brown grass field",
         first: true,
       },
+
       {
-        heading: "Intuitive Dashboards",
+        heading: "ძლიერი და ეფექტური ინსტრუმენტები",
         content:
-          "Navigate with ease using ScrewFast's intuitive dashboards. Set up and oversee your projects seamlessly, with user-friendly interfaces designed for quick and effective workflow management.",
-        svg: "dashboard",
-        src: dashboard,
-        alt: "A screenshot or graphic representation of the intuitive dashboard",
-        second: true,
-      },
-      {
-        heading: "Robust Features",
-        content:
-          "Minimize complexity, maximize productivity. ScrewFast's robust features are engineered to streamline your construction process, delivering results that stand out for their excellence.",
+          "მშენებლობის ხარისხისა და სისწრაფის უზრუნველსაყოფად თქვენ შეგიძლიათ იქირაოთ: სატკეპნი, ვიბრატორი, პერფერატორი და საბურღი ინსტრუმენტები",
         svg: "house",
         src: construction,
         alt: "Gray metal building frame near tower crane during daytime",
@@ -98,7 +89,7 @@ const avatarSrcs: Array<string> = [
     ]}
   />
 
-  <TestimonialsSection
+  <!-- TestimonialsSection
     title="Fast-Track Your Projects"
     subTitle="At ScrewFast, we ensure a swift start with instant account setup. Experience the speed of construction redefined."
     ;
@@ -133,15 +124,23 @@ const avatarSrcs: Array<string> = [
         description: "quicker assembly using innovative fastening solutions",
       },
     ]}
+  / -->
+
+  <!-- PricingSection pricing={pricing} /-->
+
+  <HeroSection
+    title=` <span
+        class="text-yellow-500 dark:text-yellow-400"> </span>`
+    subTitle="იპოვეთ თქვენთვის საჭირო საშუალება:"
+    primaryBtn="ტექნიკა და ინსტრუმენტები"
+    primaryBtnURL="/products"
+    alt="ტექნიკისა და ინსტრუმენტების ფართო არჩევანი"
   />
-
-  <PricingSection pricing={pricing} />
-
-  <FAQ title="Frequently<br />asked questions" faqs={faqs} />
+    <FAQ title="FAQs" faqs={faqs} />
 
   <HeroSectionAlt
-    title="Let's Build Together"
-    subTitle="ScrewFast is an open-source template, meticulously crafted with Astro, Tailwind CSS, and Preline UI frameworks."
-    url="https://github.com/mearashadowfax/ScrewFast"
+    title="Arenda.ge"
+    subTitle="ტელ: 551553203"
+    url="https://www.facebook.com/miniteqnika"
   />
 </MainLayout>

@@ -30,17 +30,17 @@ const mostRecentPost: CollectionEntry<"blog"> = blogPosts[0];
 const otherPosts: CollectionEntry<"blog">[] = blogPosts.slice(1);
 
 // Define variables for page content
-const title: string = "Your Gateway to Construction Excellence";
+const title: string = "Arenda.ge";
 const subTitle: string =
-  "Explore the latest news, tips, and insights from ScrewFast to enhance your construction projects. From product spotlights to project management strategies, our blog is your go-to resource for all things hardware and construction.";
-const secondTitle: string = "Insights";
+  "გაიგეთ მეტი სამშენებლო ხელსაწყოების და მოწყობილობების არენდის შესაძლებლობებზე თქვენი პროექტისთვის. ";
+const secondTitle: string = "Arenda.ge";
 const secondSubTitle: string =
-  "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts. ";
+  "უახლესი ინფორმაცია სპეც ტექნიკისა და ინსტრუმენტების გამოყენებაზე. ";
 
-const pageTitle: string = `Blog | ${SITE.title}`;
+const pageTitle: string = `სიახლეები | ${SITE.title}`;
 const metaDescription =
-  "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.";
-const ogTitle = "Construction Industry Blog | ScrewFast";
+  "Stay up-to-date with the latest trends and developments in the construction industry with insights from Arenda.ge's team of industry experts.";
+const ogTitle = "მშენებლობის სიახლეები | Arenda.ge";
 ---
 
 <MainLayout
@@ -50,19 +50,19 @@ const ogTitle = "Construction Industry Blog | ScrewFast";
   structuredData={{
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://screwfast.uk/blog",
-    url: "https://screwfast.uk/blog",
-    name: "Blog | ScrewFast",
+    "@id": "https://arenda.ge/blog",
+    url: "https://arenda.ge/blog",
+    name: "სიახლეები | Arenda.ge",
     description:
-      "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.",
+      "Stay up-to-date with the latest trends and developments in the construction industry with insights from Arenda's team of industry experts.",
     isPartOf: {
       "@type": "WebSite",
-      url: "https://screwfast.uk",
-      name: "ScrewFast",
+      url: "https://arenda.ge",
+      name: "Arenda.ge",
       description:
-        "ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.",
+        "Arenda.ge offers top-tier hardware tools and expert construction services to meet all your project needs.",
     },
-    inLanguage: "en-US",
+    inLanguage: "ka-GE",
   }}
 >
   <section

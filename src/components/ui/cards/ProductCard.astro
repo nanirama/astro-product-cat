@@ -11,7 +11,7 @@ const { product } = Astro.props;
 function formatPrice(price: number | null, currency: string | null): string {
   if (price === null) return "Price on request";
   if (currency === null) return `$${price.toLocaleString()}`;
-  return `${currency} ${price.toLocaleString()}`;
+  return `${price.toLocaleString()} ${currency}`;
 }
 ---
 

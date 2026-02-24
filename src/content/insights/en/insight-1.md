@@ -1,42 +1,136 @@
 ---
-title: "The Future of Construction Technology"
-description: "Explore ScrewFast's pioneering role in revolutionizing construction through advanced technology and innovative solutions."
+title: "როგორ შევარჩიო ექსკავატორი ჩემი პროექტისთვის"
+description: "პრაქტიკული გზამკვლევი ექსკავატორის სწორი შერჩევისთვის — ტექნიკური, ოპერაციული და ფინანსური კრიტერიუმები."
 cardImage: "@/images/insights/insight-1.avif"
 cardImageAlt: "Top view mechanical tools arrangement"
 ---
 
-In the world of construction, where innovation meets practicality, ScrewFast stands as a beacon of pioneering advancements. For years, this company has been at the forefront of revolutionizing construction through its unwavering commitment to advanced technology and innovative solutions. From skyscrapers to bridges, ScrewFast has left an indelible mark on the industry, shaping the future of construction in ways once thought unimaginable.
+# როგორ შევარჩიო ექსკავატორი ჩემი პროექტისთვის
 
-## A Legacy of Innovation
+ექსკავატორის შერჩევა არის საინჟინრო და ეკონომიკური გადაწყვეტილება ერთდროულად. სწორად შერჩეული ტექნიკა ზრდის პროდუქტიულობას, ამცირებს ერთეულის თვითღირებულებას (Cost per m³) და ამცირებს ტექნიკური შეფერხებების რისკს.
 
-Founded with a vision to redefine the norms of construction, ScrewFast embarked on a journey marked by relentless innovation. Since its inception, the company has continually pushed the boundaries of what is possible, introducing groundbreaking technologies that have transformed the way structures are built.
+ქვემოთ წარმოდგენილია სისტემური მიდგომა, რომელიც დაგეხმარებათ ოპტიმალური არჩევანის გაკეთებაში.
 
-## Reinventing Foundation Systems
+---
 
-At the heart of ScrewFast's success lies its revolutionary approach to foundation systems. Traditionally, the process of laying foundations has been cumbersome and time-consuming, often requiring extensive excavation and manual labor. However, ScrewFast's innovative solutions have changed the game entirely.
+## 1. განსაზღვრეთ სამუშაოს ტიპი და მოცულობა
 
-By leveraging advanced techniques such as helical pile installation, ScrewFast has streamlined the foundation process, significantly reducing both time and cost. These helical piles, with their screw-like design, offer unparalleled stability and can be installed with remarkable efficiency, making them the go-to choice for projects of all sizes.
+პირველ რიგში, დააზუსტეთ:
 
-## Embracing Digitalization
+- სამუშაოს ხასიათი — თხრითი, დემონტაჟი, ლანდშაფტი, კომუნალური არხები  
+- ნიადაგის კატეგორია — ქვიშიანი, თიხოვანი, ნახევრად კლდოვანი, კლდოვანი  
+- მაქსიმალური თხრის სიღრმე  
+- დატვირთვის ციკლის სიხშირე  
+- პროექტის ხანგრძლივობა  
 
-In an era dominated by digitalization, ScrewFast has embraced technology wholeheartedly, harnessing its power to drive efficiency and precision. Through the use of advanced software and modeling techniques, the company has revolutionized the design and planning phases of construction projects.
+> პრაქტიკული რჩევა: თუ სამუშაო მიმდინარეობს შეზღუდულ ურბანულ სივრცეში, მინი კლასის ექსკავატორი ხშირად უფრო ეფექტიანია, ვიდრე დიდი მოცულობის მანქანა.
 
-From 3D modeling to Building Information Modeling (BIM), ScrewFast employs cutting-edge tools to create detailed simulations of structures, allowing for better visualization and optimization. This digital approach not only enhances the accuracy of construction plans but also enables seamless collaboration among architects, engineers, and builders.
+---
 
-## Sustainable Solutions for a Greener Tomorrow
+## 2. აირჩიეთ შესაბამისი წონის კლასი
 
-In a world increasingly concerned with sustainability, ScrewFast has taken proactive steps to minimize its environmental footprint. By prioritizing eco-friendly materials and sustainable construction practices, the company is leading the charge towards a greener future.
+ექსკავატორები კლასიფიცირდება ოპერაციული წონის მიხედვით:
 
-One notable example is ScrewFast's commitment to modular construction—a method that involves prefabricating building components off-site and assembling them on-site. This approach not only reduces construction waste but also minimizes disruption to local ecosystems, making it a win-win for both builders and the environment.
+| კლასი | ოპერაციული წონა | გამოყენების სფერო |
+|--------|-----------------|--------------------|
+| მინი | 1–6 ტონა | ლანდშაფტი, მცირე ობიექტები |
+| საშუალო | 7–20 ტონა | საცხოვრებელი და კომერციული მშენებლობა |
+| მძიმე | 20+ ტონა | კარიერები, ინფრასტრუქტურა |
 
-## The Road Ahead: Challenges and Opportunities
+მაგალითად, საშუალო კლასში ფართოდ გამოიყენება **Caterpillar 320**, წარმოებული კომპანია **Caterpillar**-ის მიერ, ხოლო იაპონური **Komatsu** ცნობილია საწვავის ეფექტიანობით და გამძლე ჰიდრავლიკური სისტემებით.
 
-As ScrewFast continues to push the boundaries of construction technology, it faces a myriad of challenges and opportunities on the horizon. From navigating regulatory hurdles to adapting to evolving industry trends, the road ahead is fraught with complexities.
+---
 
-However, with its unwavering dedication to innovation and a track record of success, ScrewFast is well-positioned to overcome these obstacles and continue shaping the future of construction for generations to come. As the industry marches towards an increasingly digital and sustainable future, ScrewFast stands as a beacon of progress, leading the way towards a world where construction is not just efficient and cost-effective but also environmentally responsible.
+## 3. შეაფასეთ ტექნიკური პარამეტრები
 
-## Conclusion
+### ძრავის სიმძლავრე
+გამოიხატება HP ან kW ერთეულებში. მაღალი სიმძლავრე აუცილებელია მძიმე ნიადაგის პირობებში.
 
-In the ever-evolving landscape of construction technology, ScrewFast remains a trailblazer, constantly pushing the boundaries of what is possible. Through its commitment to innovation, digitalization, and sustainability, the company has not only revolutionized the way structures are built but has also set a new standard for excellence in the industry.
+### ჰიდრავლიკური წარმადობა
+ჰიდრავლიკური დებიტი (L/min) და წნევა განსაზღვრავს:
+- თხრის ძალას  
+- ციკლის სისწრაფეს  
+- დანამატების ეფექტიან მუშაობას  
 
-As we look towards the future, one thing is clear: the legacy of ScrewFast will continue to shape the world of construction for years to come, inspiring generations of builders to dream big and push the limits of possibility. With ScrewFast leading the way, the future of construction has never looked brighter.
+### თხრის მაქსიმალური სიღრმე და რადიუსი
+უნდა აკმაყოფილებდეს პროექტის ტექნიკურ დავალებას (Technical Specification).
+
+---
+
+## 4. შასის ტიპი — მუხლუხოიანი თუ ბორბლიანი?
+
+| ტიპი | უპირატესობა | რეკომენდებული გარემო |
+|--------|-------------|----------------------|
+| მუხლუხოიანი | სტაბილურობა, მაღალი გამავლობა | რბილი ან არასტაბილური ნიადაგი |
+| ბორბლიანი | სწრაფი გადაადგილება | ურბანული ინფრასტრუქტურა |
+
+ურბანულ პროექტებში ხშირად გამოიყენება ბორბლიანი მოდელები, ხოლო მასშტაბურ სამშენებლო ობიექტებზე — მუხლუხოიანი.
+
+---
+
+## 5. დანამატები და ფუნქციური მოქნილობა
+
+თანამედროვე მოდელები თავსებადია სხვადასხვა დანამატთან:
+
+- ჰიდრავლიკური ჩაქუჩი  
+- გრეპერი  
+- საბურღი დანადგარი  
+- Quick Coupler სისტემა  
+
+მაგალითად, **Hitachi Construction Machinery** და **Volvo Construction Equipment** სთავაზობენ მრავალფუნქციურ კონფიგურაციებს მძიმე და სპეციალიზებული სამუშაოებისთვის.
+
+---
+
+## 6. საწვავის ეფექტიანობა და ოპერაციული ხარჯი
+
+გაანალიზეთ:
+
+- საშუალო მოხმარება (ლიტრი/საათში)  
+- ტექნიკური მომსახურების ინტერვალი  
+- სათადარიგო ნაწილების ღირებულება  
+- სერვისის ხელმისაწვდომობა  
+
+> მნიშვნელოვანია: Total Cost of Ownership (TCO) ხშირად უფრო კრიტიკულია, ვიდრე საწყისი შესყიდვის ფასი.
+
+---
+
+## 7. ყიდვა თუ გაქირავება?
+
+### ყიდვა მიზანშეწონილია თუ:
+- ტექნიკა მუდმივად გჭირდებათ  
+- პროექტები გრძელვადიანია  
+- გაქვთ საკუთარი ტექნიკური გუნდი  
+
+### გაქირავება რეკომენდებულია თუ:
+- პროექტი მოკლევადიანია  
+- სპეციფიკური დანამატი დროებით გჭირდებათ  
+- კაპიტალური ინვესტიციის ოპტიმიზაცია გსურთ  
+
+---
+
+## 8. ახალი თუ მეორადი ტექნიკა?
+
+| ახალი | მეორადი |
+|--------|----------|
+| გარანტია | დაბალი საწყისი ღირებულება |
+| ნაკლები ტექნიკური რისკი | საჭიროა დეტალური ინსპექცია |
+| მაღალი ფასი | ცვეთის რისკი |
+
+მეორადი ტექნიკის შემთხვევაში შეამოწმეთ:
+- სამუშაო საათები  
+- ჰიდრავლიკური სისტემის მდგომარეობა  
+- შასის ცვეთა  
+- სერვისის ისტორია  
+
+---
+
+## დასკვნა
+
+ექსკავატორის შერჩევა უნდა ეფუძნებოდეს ტექნიკურ ანალიზს, ფინანსურ გათვლას და სამუშაო გარემოს შეფასებას.  
+
+სწორი არჩევანი უზრუნველყოფს:
+
+- მაღალი პროდუქტიულობა  
+- შემცირებული საწვავის ხარჯი  
+- დაბალი გაუთვალისწინებელი შეჩერებები  
+- პროექტის დროულ შესრულებას  

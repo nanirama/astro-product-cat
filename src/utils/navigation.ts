@@ -1,38 +1,35 @@
 // An array of links for navigation bar
 const navBarLinks = [
-  { name: "Home", url: "/" },
-  { name: "Products", url: "/products" },
-  { name: "Services", url: "/services" },
-  { name: "Blog", url: "/blog" },
-  { name: "Contact", url: "/contact" },
+  { name: "მთავარი", url: "/" },
+  { name: "პროდუქცია", url: "/products" },
+  { name: "სერვისები", url: "/services" },
+  { name: "სიახლეები", url: "/blog" },
+  { name: "კონტაქტი", url: "/contact" },
 ];
 // An array of links for footer
 const footerLinks = [
   {
-    section: "Ecosystem",
+    section: "ნავიგაცია",
     links: [
-      { name: "Documentation", url: "/welcome-to-docs/" },
-      { name: "Tools & Equipment", url: "/products" },
-      { name: "Construction Services", url: "/services" },
+     //  { name: "გამოყენების ინსტრუქცია", url: "/products" },
+      { name: "ტექნიკა და ინსტრუმენტები", url: "/products" },
+      { name: "სამშენებლო მომსახურება", url: "/services" },
     ],
   },
   {
-    section: "Company",
+    section: "მთავარი",
     links: [
-      { name: "About us", url: "#" },
-      { name: "Blog", url: "/blog" },
-      { name: "Careers", url: "#" },
-      { name: "Customers", url: "#" },
+      { name: "სიახლეები", url: "/blog" },
+      { name: "კონტაქტი", url: "/contact" },
+
+     //  { name: "კარიერა", url: "/contact" },
+      // { name: "Customers", url: "#" },
     ],
   },
 ];
 // An object of links for social icons
 const socialLinks = {
-  facebook: "https://www.facebook.com/",
-  x: "https://twitter.com/",
-  github: "https://github.com/mearashadowfax/ScrewFast",
-  google: "https://www.google.com/",
-  slack: "https://slack.com/",
+  facebook: "https://www.facebook.com/miniteqnika/",
 };
 
 export default {
