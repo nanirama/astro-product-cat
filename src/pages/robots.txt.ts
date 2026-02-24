@@ -1,36 +1,10 @@
 // https://docs.astro.build/en/guides/integrations-guide/sitemap/#usage
 import type { APIRoute } from 'astro';
 
-const robotsTxt = `
-User-agent: Googlebot
-Disallow:
-Allow: /
-Crawl-delay: 10
-
-User-agent: Yandex
-Disallow:
-Allow: /
-Crawl-delay: 2
-
-User-agent: archive.org_bot
-Disallow:
-Allow: /
-Crawl-delay: 2
-
-User-agent: facebookexternalhit
-Disallow:
-Allow: /
-
-User-agent: Twitterbot
-Disallow:
-Allow: /
-
-User-agent: LinkedInBot
-Disallow:
-Allow: /
-
+const robotsTxt = `# ✅ Correct robots.txt
 User-agent: *
-Disallow: /
+Allow: /
+Allow: /images/
 
 Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
 `.trim();
