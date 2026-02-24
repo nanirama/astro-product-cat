@@ -16,7 +16,7 @@ weight: "1 ტ"
 
 delivery_cost: null
 
-main_image: "/images/products/damtvirtveli/bobcat.avif"
+main_image: "/images/products/damtvirtveli/bobcat.png"
 ---
 
 Bobcat-ის დამტვირთველი
