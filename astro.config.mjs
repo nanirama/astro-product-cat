@@ -11,7 +11,7 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
    output: "static",
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
-  site: "https://www.arenda.ge",
+  site: "https://astro-product-cat.pages.dev",
   image: {
     domains: ["images.unsplash.com"],
   },
