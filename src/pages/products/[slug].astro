@@ -39,7 +39,7 @@ const selectedColor = Astro.url.searchParams.get("color") || (product.data.color
 
 // SEO and Meta
 const pageTitle = `${product.data.title} | ${SITE.title}`;
-const metaDescription = product.data.short_description || `Browse ${product.data.title}`;
+const metaDescription = product.data.short_description || ``;
 const canonicalUrl = new URL(`/products/${product.data.slug}`, Astro.site || Astro.url.origin).href;
 
 // Ensure image URL is absolute - handle both relative paths starting with / and absolute URLs
@@ -116,12 +116,13 @@ const breadcrumbStructuredData = {
     }
   ]
 };
+console.log('metaDescription',metaDescription)
 ---
 
 <MainLayout 
   title={pageTitle} 
   customDescription={metaDescription}
-  customOgTitle={product.data.title}
+  customOgTitle={pageTitle}
   structuredData={{
     "@context": "https://schema.org",
     "@graph": [productStructuredData, breadcrumbStructuredData]
