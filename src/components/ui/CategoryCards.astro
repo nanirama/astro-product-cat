@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from "astro:content";
+import CategoryCard from "./cards/CategoryCard.astro";
+
+interface Props {
+  allProducts: CollectionEntry<"products">[];
+}
+
+const { allProducts } = Astro.props;
+
+// Get all unique categories
+const allCategories = Array.from(
+  new Set(
+    allProducts.flatMap((product) => product.data.category || [])
+  )
+).sort();
+
+// For each category, get the first product's main_image
+const categoriesWithImages = allCategories.map((category) => {
+  const firstProduct = allProducts.find((product) =>
+    product.data.category?.includes(category)
+  );
+  return {
+    category,
+    image: firstProduct?.data.main_image || "",
+    url: `/products/category/${category}`,
+  };
+});
+---
+
+{categoriesWithImages.length > 0 && (
+  <div class="flex flex-wrap justify-center gap-6 mb-12">
+    {categoriesWithImages.map(({ category, image, url }) => (
+      <CategoryCard category={category} categoryImage={image} categoryUrl={url} />
+    ))}
+  </div>
+)}

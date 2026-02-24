@@ -4,6 +4,7 @@ import ProductImageGallery from "@components/ui/ProductImageGallery.astro";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { SITE } from "@data/constants";
+import SocialShare from "@components/products/SocialShare";
 
 export async function getStaticPaths() {
   const allProducts: CollectionEntry<"products">[] = await getCollection("products");
@@ -40,7 +41,25 @@ const selectedColor = Astro.url.searchParams.get("color") || (product.data.color
 const pageTitle = `${product.data.title} | ${SITE.title}`;
 const metaDescription = product.data.short_description || `Browse ${product.data.title}`;
 const canonicalUrl = new URL(`/products/${product.data.slug}`, Astro.site || Astro.url.origin).href;
-const productImageUrl = new URL(product.data.main_image, Astro.site || Astro.url.origin).href;
+
+// Ensure image URL is absolute - handle both relative paths starting with / and absolute URLs
+const imagePath = product.data.main_image.startsWith('http') 
+  ? product.data.main_image 
+  : product.data.main_image.startsWith('/')
+    ? product.data.main_image
+    : `/${product.data.main_image}`;
+const productImageUrl = new URL(imagePath, Astro.site || Astro.url.origin).href;
+
+// Detect image type from file extension
+const getImageType = (imagePath: string): string => {
+  const ext = imagePath.toLowerCase().split('.').pop();
+  if (ext === 'png') return 'image/png';
+  if (ext === 'jpg' || ext === 'jpeg') return 'image/jpeg';
+  if (ext === 'webp') return 'image/webp';
+  if (ext === 'avif') return 'image/avif';
+  return 'image/jpeg'; // default
+};
+const imageType = getImageType(product.data.main_image);
 
 // Generate structured data for Product schema
 const productStructuredData = {
@@ -107,22 +126,13 @@ const breadcrumbStructuredData = {
     "@context": "https://schema.org",
     "@graph": [productStructuredData, breadcrumbStructuredData]
   }}
+  ogImage={productImageUrl}
+  ogUrl={canonicalUrl}
 >
   {/* Structured Data */}
   <script type="application/ld+json" is:inline set:html={JSON.stringify(productStructuredData)} />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbStructuredData)} />
   
-  {/* Additional Meta Tags */}
-  <meta property="og:type" content="product" />
-  <meta property="og:image" content={productImageUrl} />
-  <meta property="og:image:alt" content={product.data.title} />
-  {product.data.price !== null && (
-    <>
-      <meta property="product:price:amount" content={product.data.price.toString()} />
-      <meta property="product:price:currency" content={product.data.currency || "USD"} />
-    </>
-  )}
-  <link rel="canonical" href={canonicalUrl} />
 
   <div class="mx-auto max-w-[85rem] px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12 2xl:max-w-full">
     <!-- Breadcrumb Navigation -->
@@ -220,6 +230,13 @@ const breadcrumbStructuredData = {
             </a>
           </div>
         </div>
+        <div class="inline-flex  py-4 mb-8">
+        <SocialShare
+          client:load
+          url={canonicalUrl}
+          title={product.data.title}
+        />
+      </div>
 
         <!-- Request a Quote Button -->
         

@@ -10,6 +10,8 @@ import TestimonialsSection from "@components/sections/testimonials/TestimonialsS
 import PricingSection from "@components/sections/pricing/PricingSection.astro";
 import FAQ from "@components/sections/misc/FAQ.astro";
 import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
+import CategoryCards from "@components/ui/CategoryCards.astro";
+import { getCollection } from "astro:content";
 import heroImage from "@images/hero-image.avif";
 import faqs from "@data/faqs.json";
 import features from "@data/features.json";
@@ -19,6 +21,9 @@ import construction from "@images/construction-image.avif";
 import tools from "@images/automated-tools.avif";
 import dashboard from "@images/dashboard-image.avif";
 import { partnersData } from "@/data_files/constants";
+
+// Get all products for category cards
+const allProducts = await getCollection("products");
 
 const avatarSrcs: Array<string> = [
   "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
@@ -137,6 +142,13 @@ const avatarSrcs: Array<string> = [
     alt="ტექნიკისა და ინსტრუმენტების ფართო არჩევანი"
   />
     <FAQ title="FAQs" faqs={faqs} />
+
+  <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+    <h2 class="text-4xl font-bold tracking-tight text-balance text-center text-neutral-800 mb-8 md:text-5xl dark:text-neutral-200">
+      Categories
+    </h2>
+    <CategoryCards allProducts={allProducts} />
+  </div>
 
   <HeroSectionAlt
     title="Arenda.ge"

@@ -6,6 +6,7 @@ import CategoryFilter from "@components/ui/CategoryFilter.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { SITE } from "@data/constants";
+import ProductsWithFilter from "@components/products/ProductsWithFilter";
 
 export async function getStaticPaths() {
   const allProducts: CollectionEntry<"products">[] = await getCollection("products");
@@ -46,6 +47,17 @@ const paginatedProducts = allProducts.slice(startIndex, endIndex);
 
 const pageTitle = currentPage > 1 ? `Products - Page ${currentPage} | ${SITE.title}` : `ტექნიკა და ინსტრუმენტები | ${SITE.title}`;
 const metaDescription = "მოიძიეთ თქვენი პროექტისთვის საჭირო ტექნიკა და ინსტრუმენტი";
+
+const serializedProducts = paginatedProducts.map((p) => ({
+  slug: p.data.slug,
+  data: {
+    title: p.data.title,
+    price: p.data.price,
+    category: p.data.category[0],
+    image: p.data.main_image,
+    description: p.data.short_description,
+  },
+}));
 ---
 
 <MainLayout title={pageTitle} customDescription={metaDescription}>
@@ -58,8 +70,15 @@ const metaDescription = "მოიძიეთ თქვენი პროე�
     <!-- Category Filter -->
     <CategoryFilter categories={allCategories} selectedCategory={null} baseUrl="/products" />
 
+    <ProductsWithFilter
+      client:load
+      allProducts={serializedProducts}
+      productsPerPage={8}
+      currency="₹"
+    />
+
     <!-- Products Grid -->
-    {paginatedProducts.length > 0 ? (
+    <!-- {paginatedProducts.length > 0 ? (
       <div class="flex flex-wrap justify-center gap-6 mb-12">
         {paginatedProducts.map((product) => (
           <ProductCard product={product} />
@@ -71,14 +90,14 @@ const metaDescription = "მოიძიეთ თქვენი პროე�
           No products found.
         </p>
       </div>
-    )}
+    )} -->
 
     <!-- Pagination -->
-    <Pagination
+    <!-- <Pagination
       currentPage={currentPage}
       totalPages={totalPages}
       baseUrl="/products"
       pageUrlPattern="/products/page/{page}"
-    />
+    /> -->
   </div>
 </MainLayout>

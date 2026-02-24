@@ -12,6 +12,9 @@ const defaultProps = {
   structuredData: SEO.structuredData,
   customDescription: null,
   customOgTitle: null,
+  ogImage: null,
+  ogUrl: null,
+  ogImageType: null,
 };
 
 // Extract props with default values assigned from defaultProps. Values can be overridden when the component is used.
@@ -22,6 +25,9 @@ const {
   structuredData = defaultProps.structuredData,
   customDescription = defaultProps.customDescription,
   customOgTitle = defaultProps.customOgTitle,
+  ogImage = null,
+  ogUrl = null,
+  ogImageType = null,
 } = Astro.props;
 
 // Use custom description if provided, otherwise use default meta
@@ -37,17 +43,31 @@ const canonical = new URL(
   Astro.url.pathname,
   Astro.site || Astro.url.origin
 ).href;
-const basePath = Astro.url.pathname;
-const socialImageRes = await getImage({
-  src: OG.image,
-  width: 1200,
-  height: 600,
-});
-const socialImage = Astro.url.origin + socialImageRes.src; // Get the full URL of the image (https://stackoverflow.com/a/9858694)
+// const basePath = Astro.url.pathname;
+// const socialImageRes = await getImage({
+//   src: OG.image,
+//   width: 1200,
+//   height: 600,
+// });
+// const socialImage = Astro.url.origin + socialImageRes.src; // Get the full URL of the image (https://stackoverflow.com/a/9858694)
+const defaultOgImage = new URL("/og-default.png", Astro.site).href;
+const resolvedImage = ogImage ?? defaultOgImage;
 
+// Detect image type from file extension if not provided
+const getImageType = (imagePath: string | null): string => {
+  if (!imagePath) return 'image/jpeg';
+  const ext = imagePath.toLowerCase().split('.').pop() || '';
+  if (ext === 'png') return 'image/png';
+  if (ext === 'jpg' || ext === 'jpeg') return 'image/jpeg';
+  if (ext === 'webp') return 'image/webp';
+  if (ext === 'avif') return 'image/avif';
+  if (ext === 'gif') return 'image/gif';
+  return 'image/jpeg'; // default
+};
+
+const resolvedImageType = ogImageType ?? getImageType(ogImage ?? defaultOgImage);
 const languages: { [key: string]: string } = {
   en: "",
-  fr: "fr",
 };
 
 function createHref(lang: string, prefix: string, path: string): string {
@@ -109,24 +129,22 @@ const appleTouchIcon = await getImage({
 <Fragment set:html={alternateLanguageLinks} />
 
 {/* Facebook Meta Tags */}
-<meta property="og:locale" content="en_US" />
-<meta property="og:url" content={siteURL} />
-<meta property="og:type" content="website" />
-<meta property="og:title" content={ogTitle} />
+<!-- OG Tags — add/replace these -->
+<meta property="og:title" content={customOgTitle ?? SITE.title} />
+<meta property="og:description" content={customDescription ?? SITE.description} />
+<meta property="og:image" content={resolvedImage} />
+<meta property="og:image:secure_url" content={resolvedImage} />
+<meta property="og:image:type" content={resolvedImageType} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+{ogUrl && <meta property="og:url" content={ogUrl} />}
 <meta property="og:site_name" content={SITE.title} />
-<meta property="og:description" content={ogDescription} />
-<meta property="og:image" content={socialImage} />
-<meta content="1200" property="og:image:width" />
-<meta content="600" property="og:image:height" />
-<meta content="image/png" property="og:image:type" />
 
-{/* Twitter Meta Tags */}
+<!-- Twitter/X -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:domain" content={siteURL} />
-<meta property="twitter:url" content={siteURL} />
-<meta name="twitter:title" content={ogTitle} />
-<meta name="twitter:description" content={ogDescription} />
-<meta name="twitter:image" content={socialImage} />
+<meta name="twitter:title" content={customOgTitle ?? SITE.title} />
+<meta name="twitter:description" content={customDescription ?? SITE.description} />
+<meta name="twitter:image" content={resolvedImage} />
 
 {/* Links to the webmanifest and sitemap */}
 <link rel="manifest" href="/manifest.json" />

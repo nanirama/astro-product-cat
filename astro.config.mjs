@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
 import starlight from "@astrojs/starlight";
+import react from '@astrojs/react';
 
 import mdx from "@astrojs/mdx";
 
@@ -10,7 +11,7 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
    output: "static",
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
-  site: "https://screwfast.uk",
+  site: "https://www.arenda.ge",
   image: {
     domains: ["images.unsplash.com"],
   },
@@ -26,12 +27,12 @@ export default defineConfig({
   // },
   prefetch: true,
   integrations: [
+    react(),
     sitemap({
       i18n: {
         defaultLocale: "en", // All urls that don't contain language prefix will be treated as default locale
         locales: {
-          en: "en", // The `defaultLocale` value must present in `locales` keys
-          fr: "fr",
+          en: "en",
         },
       },
     }),
@@ -106,14 +107,14 @@ export default defineConfig({
           tag: "meta",
           attrs: {
             property: "og:image",
-            content: "https://screwfast.uk" + "/social.webp",
+            content: "https://www.arenda.ge" + "/og-default.png",
           },
         },
         {
           tag: "meta",
           attrs: {
             property: "twitter:image",
-            content: "https://screwfast.uk" + "/social.webp",
+            content: "https://www.arenda.ge" + "/og-default.png",
           },
         },
       ],

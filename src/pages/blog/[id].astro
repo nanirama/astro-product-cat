@@ -4,9 +4,9 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import AvatarBlogLarge from "@components/ui/avatars/AvatarBlogLarge.astro";
 import CardRelated from "@components/ui/cards/CardRelated.astro";
 import Bookmark from "@components/ui/buttons/Bookmark.astro";
-import SocialShare from "@components/ui/buttons/SocialShare.astro";
+import SocialShare from "@components/products/SocialShare";
 import PostFeedback from "@components/ui/feedback/PostFeedback.astro";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import { capitalize, formatDate } from "@utils/utils";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -47,6 +47,16 @@ const pageTitle: string = `${post.data.title} | ${SITE.title}`;
 const metaDescription =
   post.data.contents[0] || ` ${post.data.title} `;
 const ogTitle = `${post.data.title} | სიახლეები | ${SITE.title}`;
+const canonicalUrl = `https://arenda.ge/blog/${post.id.replace(/^en\//, "")}`;
+
+// Get the card image URL for Open Graph
+// post.data.cardImage is an ImageMetadata object, use getImage to get the processed image
+const optimizedImage = await getImage({ src: post.data.cardImage });
+
+// Get the absolute URL - optimizedImage.src is the processed path
+const cardImageUrl = new URL(optimizedImage.src, Astro.site || Astro.url.origin).href;
+
+
 ---
 
 <MainLayout
@@ -57,7 +67,7 @@ const ogTitle = `${post.data.title} | სიახლეები | ${SITE.title
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.data.title,
-    image: post.data.cardImage.src,
+    image: cardImageUrl,
     datePublished: post.data.pubDate.toISOString(),
     author: {
       "@type": "Person",
@@ -76,6 +86,8 @@ const ogTitle = `${post.data.title} | სიახლეები | ${SITE.title
       "@id": `https://arenda.ge/blog/${post.id.replace(/^en\//, "")}`,
     },
   }}
+  ogImage={cardImageUrl}
+  ogUrl={canonicalUrl}
 >
   <section class="mx-auto max-w-3xl px-4 pt-6 pb-12 sm:px-6 lg:px-8 lg:pt-10">
     <div class="max-w-2xl">
@@ -160,7 +172,12 @@ const ogTitle = `${post.data.title} | სიახლეები | ${SITE.title
           >
           </div>
           <div class="inline-flex">
-            <SocialShare pageTitle={post.data.title} />
+            <!-- <SocialShare pageTitle={post.data.title} /> -->
+            <SocialShare
+              client:load
+              url={canonicalUrl}
+              title={post.data.title}
+            />
           </div>
         </div>
       </div>
