@@ -1,12 +1,21 @@
 // https://docs.astro.build/en/guides/integrations-guide/sitemap/#usage
 import type { APIRoute } from 'astro';
 
-const robotsTxt = `# ✅ Correct robots.txt
+const robotsTxt = `# Allow all crawlers including Facebook (facebookexternalhit) and Twitter (Twitterbot)
 User-agent: *
 Allow: /
-Allow: /images/
 
-Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
+# Explicitly allow social media bots
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+Sitemap: https://astro-product-cat.pages.dev/sitemap-index.xml
 `.trim();
 
 export const GET: APIRoute = () => {
