@@ -1,0 +1,8 @@
+/*
+  X-Robots-Tag: index, follow
+
+/products/*
+  Access-Control-Allow-Origin: *
+
+/images/*
+  Access-Control-Allow-Origin: *

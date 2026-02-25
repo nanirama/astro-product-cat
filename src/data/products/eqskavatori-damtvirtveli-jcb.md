@@ -17,7 +17,7 @@ weight: "8 ტონა"
 
 delivery_cost: null
 
-main_image: "/images/products/eqskavatori-damtvirtveli-jcb/jcb-3cx.avif"
+main_image: "/images/products/eqskavatori-damtvirtveli-jcb/jcb-3cx.png"
 
 ---
 
